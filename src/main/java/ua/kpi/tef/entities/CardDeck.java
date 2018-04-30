@@ -5,7 +5,14 @@ import java.util.Random;
 import static ua.kpi.tef.entities.CardRating.*;
 import static ua.kpi.tef.entities.CardSuit.*;
 
+/**
+ * @author y.kovtun
+ * stack based card deck
+ */
 public class CardDeck {
+
+    private Card trump = null;
+
     private Card[] cards = {
             Card.builder().rating(SIX).suit(SPADES).build(),
             Card.builder().rating(SEVEN).suit(SPADES).build(),
@@ -50,6 +57,34 @@ public class CardDeck {
             Card.builder().rating(KING).suit(HEARTS).build(),
             Card.builder().rating(ACE).suit(HEARTS).build(),
     };
+
+    private int position = cards.length - 1;
+
+    public Card pull() {
+        if (position >= 0) {
+            return cards[position--];
+        } else {
+            throw new ArrayIndexOutOfBoundsException("Deck is empty");
+        }
+    }
+
+    public void setTrump() {
+        if (trump == null) {
+            trump = cards[position];
+            System.arraycopy(cards, 0, cards, 1, position);
+            cards[0]= trump;
+        } else {
+            throw new UnsupportedOperationException("Trump card has already been setted");
+        }
+    }
+
+    public Card getTrumpCard() {
+        return trump;
+    }
+
+    public int getAmountOfCardsInDeck() {
+        return position + 1;
+    }
 
     public void shuffle() {
         Random random = new Random();
