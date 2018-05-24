@@ -8,4 +8,9 @@ import lombok.Data;
 public class Card {
     private CardSuit suit;
     private CardRating rating;
+
+    @Override
+    public String toString() {
+        return suit + "" + rating;
+    }
 }

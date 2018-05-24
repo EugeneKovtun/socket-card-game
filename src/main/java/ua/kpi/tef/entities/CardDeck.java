@@ -72,9 +72,9 @@ public class CardDeck {
         if (trump == null) {
             trump = cards[position];
             System.arraycopy(cards, 0, cards, 1, position);
-            cards[0]= trump;
+            cards[0] = trump;
         } else {
-            throw new UnsupportedOperationException("Trump card has already been setted");
+            throw new UnsupportedOperationException("Trump card has already been set");
         }
     }
 
